@@ -160,6 +160,7 @@
     <ClCompile Include="..\..\src\json_extensibility_tests.cpp" />
     <ClCompile Include="..\..\src\json_object_tests.cpp" />
     <ClCompile Include="..\..\src\json_parse_tests.cpp" />
+    <ClCompile Include="..\..\src\json_path_tests.cpp" />
     <ClCompile Include="..\..\src\json_reader_exception_tests.cpp" />
     <ClCompile Include="..\..\src\json_serializer_tests.cpp" />
     <ClCompile Include="..\..\src\string_to_double_tests.cpp" />
