@@ -1,6 +1,6 @@
 Coming next in Release 0.97
 
-- Implement the [JSON Pointer](https://tools.ietf.org/html/rfc6901) specification for identifying a specific value within a `json` document.
+- Implement a path specification for selecting values within a `json` document, [JsonPath](http://goessner.net/articles/JsonPath/)
 
 Coming in later release:
 
