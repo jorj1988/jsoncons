@@ -23,9 +23,11 @@ The library has a number of features, which are listed below:
 - Supports storing "any" values in a json object or array, with specialized serialization
 - Supports reading (writing) JSON values from (to) CSV files
 
-## What's new 
+## What's new in 0.97
 
-Release 0.96 includes breaking changes to interfaces. Details of the changes may be found in the [Changelog](https://github.com/danielaparker/jsoncons/blob/master/src/doc/Changelog.md). Going forward, the interfaces are expected to be stable.
+Release 0.96 introduced name changes to the event methods do_longlong_value, do_ulonglong_value and do_double_value, as well as typedefs for long long, unsigned long long and double. These changes have been reverted to as they were before. Details and rationale may be found in the [Changelog](https://github.com/danielaparker/jsoncons/blob/master/src/doc/Changelog.md). 
+
+Going forward, the interfaces are expected to be stable.
 
 ## Using the code
 
@@ -33,11 +35,8 @@ The jsoncons library is header-only: it consists solely of header files containi
 
 To install the jsoncons library, download the zip file, unpack the release, under `src` find the directory `jsoncons`, and copy it to your `include` directory. If you wish to use extensions, copy the `jsoncons_ext` directory as well. 
 
-The jsoncons classes and functions are in namespace `jsoncons`.  Namespace `jsoncons` includes names for number types declared with typedef, and a name for a null type defined as an empty struct:
+The jsoncons classes and functions are in namespace `jsoncons`.  Namespace `jsoncons` includes a name for a null type defined as an empty struct:
 
-    typedef double float_type
-    typedef long long integer_type
-    typedef unsigned long long unsigned_type
 	struct null_type{}
 
 The following using declarations are for the examples that appear below.

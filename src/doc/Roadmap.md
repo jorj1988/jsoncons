@@ -1,4 +1,4 @@
-Coming next in Release 0.97
+Coming next in Release 0.98
 
 - Implement a path specification for selecting values within a `json` document, [JsonPath](http://goessner.net/articles/JsonPath/)
 
@@ -13,4 +13,3 @@ Coming in later release:
 - Examine other data storage than vectors that could benefit from custom allocators.
 
 - Add extensions for reading from and serializing to binary formats (bson,bjson,ubjson) 
-

@@ -468,7 +468,7 @@ vertical-align:1px;
 </style>
 </head>
 <body>
-<p>Coming next in Release 0.97</p>
+<p>Coming next in Release 0.98</p>
 
 <ul class="task-list">
 <li>Implement a path specification for selecting values within a <code>json</code> document, <a href="http://goessner.net/articles/JsonPath/">JsonPath</a>

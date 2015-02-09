@@ -85,9 +85,9 @@ basic_json<Char, Alloc>::basic_json(const basic_json<Char, Alloc>& val)
     case value_type::null_t:
     case value_type::empty_object_t:
         break;
-    case value_type::float_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
+    case value_type::double_t:
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
     case value_type::bool_t:
         value_ = val.value_;
         break;
@@ -139,49 +139,49 @@ basic_json<Char, Alloc>::basic_json(jsoncons::null_type)
 template<typename Char, typename Alloc>
 basic_json<Char, Alloc>::basic_json(double val)
 {
-    type_ = value_type::float_t;
+    type_ = value_type::double_t;
     value_.float_value_ = val;
 }
 
 template<typename Char, typename Alloc>
 basic_json<Char, Alloc>::basic_json(long long val)
 {
-    type_ = value_type::integer_t;
+    type_ = value_type::longlong_t;
     value_.si_value_ = val;
 }
 
 template<typename Char, typename Alloc>
 basic_json<Char, Alloc>::basic_json(int val)
 {
-    type_ = value_type::integer_t;
+    type_ = value_type::longlong_t;
     value_.si_value_ = val;
 }
 
 template<typename Char, typename Alloc>
 basic_json<Char, Alloc>::basic_json(unsigned int val)
 {
-    type_ = value_type::unsigned_t;
+    type_ = value_type::ulonglong_t;
     value_.si_value_ = val;
 }
 
 template<typename Char, typename Alloc>
 basic_json<Char, Alloc>::basic_json(long val)
 {
-    type_ = value_type::integer_t;
+    type_ = value_type::longlong_t;
     value_.si_value_ = val;
 }
 
 template<typename Char, typename Alloc>
 basic_json<Char, Alloc>::basic_json(unsigned long val)
 {
-    type_ = value_type::unsigned_t;
+    type_ = value_type::ulonglong_t;
     value_.si_value_ = val;
 }
 
 template<typename Char, typename Alloc>
 basic_json<Char, Alloc>::basic_json(unsigned long long val)
 {
-    type_ = value_type::unsigned_t;
+    type_ = value_type::ulonglong_t;
     value_.ui_value_ = val;
 }
 
@@ -228,9 +228,9 @@ basic_json<Char, Alloc>::basic_json(value_type::value_type_t t)
     {
     case value_type::null_t:
     case value_type::empty_object_t:
-    case value_type::float_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
+    case value_type::double_t:
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
     case value_type::bool_t:
         break;
     case value_type::string_t:
@@ -255,9 +255,9 @@ basic_json<Char, Alloc>::~basic_json()
     {
     case value_type::null_t:
     case value_type::empty_object_t:
-    case value_type::float_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
+    case value_type::double_t:
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
     case value_type::bool_t:
         break;
     case value_type::string_t:
@@ -284,9 +284,9 @@ void basic_json<Char, Alloc>::assign_any(const typename basic_json<Char,Alloc>::
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
         type_ = value_type::any_t;
         value_.any_value_ = new any(rhs);
         break;
@@ -304,9 +304,9 @@ void basic_json<Char, Alloc>::assign_string(const std::basic_string<Char>& rhs)
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
         type_ = value_type::string_t;
         value_.string_value_ = create_string_env(rhs);
         break;
@@ -316,17 +316,17 @@ void basic_json<Char, Alloc>::assign_string(const std::basic_string<Char>& rhs)
     }
 }
 template<typename Char, class Alloc>
-void basic_json<Char, Alloc>::assign_integer(integer_type rhs)
+void basic_json<Char, Alloc>::assign_integer(long long rhs)
 {
     switch (type_)
     {
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
-        type_ = value_type::integer_t;
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
+        type_ = value_type::longlong_t;
         value_.si_value_ = rhs;
         break;
     default:
@@ -335,17 +335,17 @@ void basic_json<Char, Alloc>::assign_integer(integer_type rhs)
     }
 }
 template<typename Char, class Alloc>
-void basic_json<Char, Alloc>::assign_unsigned(unsigned_type rhs)
+void basic_json<Char, Alloc>::assign_unsigned(unsigned long long rhs)
 {
     switch (type_)
     {
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
-        type_ = value_type::unsigned_t;
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
+        type_ = value_type::ulonglong_t;
         value_.ui_value_ = rhs;
         break;
     default:
@@ -355,17 +355,17 @@ void basic_json<Char, Alloc>::assign_unsigned(unsigned_type rhs)
 }
 
 template<typename Char, class Alloc>
-void basic_json<Char, Alloc>::assign_float(float_type rhs)
+void basic_json<Char, Alloc>::assign_float(double rhs)
 {
     switch (type_)
     {
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
-        type_ = value_type::float_t;
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
+        type_ = value_type::double_t;
         value_.float_value_ = rhs;
         break;
     default:
@@ -382,10 +382,10 @@ void basic_json<Char, Alloc>::assign_longlong(long long rhs)
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
-        type_ = value_type::integer_t;
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
+        type_ = value_type::longlong_t;
         value_.si_value_ = rhs;
         break;
     default:
@@ -401,10 +401,10 @@ void basic_json<Char, Alloc>::assign_ulonglong(unsigned long long rhs)
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
-        type_ = value_type::unsigned_t;
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
+        type_ = value_type::ulonglong_t;
         value_.ui_value_ = rhs;
         break;
     default:
@@ -421,10 +421,10 @@ void basic_json<Char, Alloc>::assign_double(double rhs)
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
-        type_ = value_type::float_t;
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
+        type_ = value_type::double_t;
         value_.float_value_ = rhs;
         break;
     default:
@@ -441,9 +441,9 @@ void basic_json<Char, Alloc>::assign_bool(bool rhs)
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
         type_ = value_type::bool_t;
         value_.bool_value_ = rhs;
         break;
@@ -460,9 +460,9 @@ void basic_json<Char, Alloc>::assign_null()
     case value_type::null_t:
     case value_type::bool_t:
     case value_type::empty_object_t:
-    case value_type::integer_t:
-    case value_type::unsigned_t:
-    case value_type::float_t:
+    case value_type::longlong_t:
+    case value_type::ulonglong_t:
+    case value_type::double_t:
         type_ = value_type::null_t;
         break;
     default:
@@ -491,36 +491,36 @@ bool basic_json<Char, Alloc>::operator==(const basic_json<Char, Alloc>& rhs) con
     {
         switch (type_)
         {
-        case value_type::integer_t:
+        case value_type::longlong_t:
             switch (rhs.type())
             {
-            case value_type::integer_t:
+            case value_type::longlong_t:
                 return value_.si_value_ == rhs.value_.si_value_;
-            case value_type::unsigned_t:
+            case value_type::ulonglong_t:
                 return value_.si_value_ == rhs.value_.ui_value_;
-            case value_type::float_t:
+            case value_type::double_t:
                 return value_.si_value_ == rhs.value_.float_value_;
             }
             break;
-        case value_type::unsigned_t:
+        case value_type::ulonglong_t:
             switch (rhs.type())
             {
-            case value_type::integer_t:
+            case value_type::longlong_t:
                 return value_.ui_value_ == rhs.value_.si_value_;
-            case value_type::unsigned_t:
+            case value_type::ulonglong_t:
                 return value_.ui_value_ == rhs.value_.ui_value_;
-            case value_type::float_t:
+            case value_type::double_t:
                 return value_.ui_value_ == rhs.value_.float_value_;
             }
             break;
-        case value_type::float_t:
+        case value_type::double_t:
             switch (rhs.type())
             {
-            case value_type::integer_t:
+            case value_type::longlong_t:
                 return value_.float_value_ == rhs.value_.si_value_;
-            case value_type::unsigned_t:
+            case value_type::ulonglong_t:
                 return value_.float_value_ == rhs.value_.ui_value_;
-            case value_type::float_t:
+            case value_type::double_t:
                 return value_.float_value_ == rhs.value_.float_value_;
             }
             break;
@@ -920,13 +920,13 @@ void basic_json<Char, Alloc>::to_stream(basic_json_output_handler<Char>& handler
     case value_type::string_t:
         handler.value(value_.string_value_->p,value_.string_value_->length);
         break;
-    case value_type::float_t:
+    case value_type::double_t:
         handler.value(value_.float_value_);
         break;
-    case value_type::integer_t:
+    case value_type::longlong_t:
         handler.value(value_.si_value_);
         break;
-    case value_type::unsigned_t:
+    case value_type::ulonglong_t:
         handler.value(value_.ui_value_);
         break;
     case value_type::bool_t:
@@ -1374,123 +1374,15 @@ bool basic_json<Char, Alloc>::as_bool() const
 }
 
 template<typename Char, typename Alloc>
-integer_type basic_json<Char, Alloc>::as_integer() const
-{
-    switch (type_)
-    {
-    case value_type::float_t:
-        return static_cast<integer_type>(value_.float_value_);
-    case value_type::integer_t:
-        return value_.si_value_;
-    case value_type::unsigned_t:
-        return static_cast<integer_type>(value_.ui_value_);
-    case value_type::bool_t:
-        return value_.bool_value_ ? 1 : 0;
-    default:
-        JSONCONS_THROW_EXCEPTION("Not an integer type");
-    }
-}
-
-template<typename Char, typename Alloc>
-unsigned_type basic_json<Char, Alloc>::as_unsigned() const
-{
-    switch (type_)
-    {
-    case value_type::float_t:
-        return static_cast<unsigned_type>(value_.float_value_);
-    case value_type::integer_t:
-        return static_cast<unsigned_type>(value_.si_value_);
-    case value_type::unsigned_t:
-        return value_.ui_value_;
-    case value_type::bool_t:
-        return value_.bool_value_ ? 1 : 0;
-    default:
-        JSONCONS_THROW_EXCEPTION("Not an unsigned integer type");
-    }
-}
-
-template<typename Char, typename Alloc>
-float_type basic_json<Char, Alloc>::as_float() const
-{
-    switch (type_)
-    {
-    case value_type::float_t:
-        return value_.float_value_;
-    case value_type::integer_t:
-        return static_cast<float_type>(value_.si_value_);
-    case value_type::unsigned_t:
-        return static_cast<float_type>(value_.ui_value_);
-    case value_type::null_t:
-        return std::numeric_limits<float_type>::quiet_NaN();;
-    default:
-        JSONCONS_THROW_EXCEPTION("Not a float type");
-    }
-}
-
-template<typename Char, typename Alloc>
-double basic_json<Char, Alloc>::as_double() const
-{
-    switch (type_)
-    {
-    case value_type::float_t:
-        return value_.float_value_;
-    case value_type::integer_t:
-        return static_cast<double>(value_.si_value_);
-    case value_type::unsigned_t:
-        return static_cast<double>(value_.ui_value_);
-    case value_type::null_t:
-        return std::numeric_limits<double>::quiet_NaN();;
-    default:
-        JSONCONS_THROW_EXCEPTION("Not a double");
-    }
-}
-
-template<typename Char, typename Alloc>
-int basic_json<Char, Alloc>::as_int() const
-{
-    switch (type_)
-    {
-    case value_type::float_t:
-        return static_cast<int>(value_.float_value_);
-    case value_type::integer_t:
-        return static_cast<int>(value_.si_value_);
-    case value_type::unsigned_t:
-        return static_cast<int>(value_.ui_value_);
-    case value_type::bool_t:
-        return value_.bool_value_ ? 1 : 0;
-    default:
-        JSONCONS_THROW_EXCEPTION("Not a int");
-    }
-}
-
-template<typename Char, typename Alloc>
-unsigned int basic_json<Char, Alloc>::as_uint() const
-{
-    switch (type_)
-    {
-    case value_type::float_t:
-        return static_cast<unsigned int>(value_.float_value_);
-    case value_type::integer_t:
-        return static_cast<unsigned int>(value_.si_value_);
-    case value_type::unsigned_t:
-        return static_cast<unsigned int>(value_.ui_value_);
-    case value_type::bool_t:
-        return value_.bool_value_ ? 1 : 0;
-    default:
-        JSONCONS_THROW_EXCEPTION("Not a unsigned int");
-    }
-}
-
-template<typename Char, typename Alloc>
 long long basic_json<Char, Alloc>::as_longlong() const
 {
     switch (type_)
     {
-    case value_type::float_t:
+    case value_type::double_t:
         return static_cast<long long>(value_.float_value_);
-    case value_type::integer_t:
+    case value_type::longlong_t:
         return static_cast<long long>(value_.si_value_);
-    case value_type::unsigned_t:
+    case value_type::ulonglong_t:
         return static_cast<long long>(value_.ui_value_);
     case value_type::bool_t:
         return value_.bool_value_ ? 1 : 0;
@@ -1504,11 +1396,11 @@ unsigned long long basic_json<Char, Alloc>::as_ulonglong() const
 {
     switch (type_)
     {
-    case value_type::float_t:
+    case value_type::double_t:
         return static_cast<unsigned long long>(value_.float_value_);
-    case value_type::integer_t:
+    case value_type::longlong_t:
         return static_cast<unsigned long long>(value_.si_value_);
-    case value_type::unsigned_t:
+    case value_type::ulonglong_t:
         return static_cast<unsigned long long>(value_.ui_value_);
     case value_type::bool_t:
         return value_.bool_value_ ? 1 : 0;
@@ -1518,15 +1410,69 @@ unsigned long long basic_json<Char, Alloc>::as_ulonglong() const
 }
 
 template<typename Char, typename Alloc>
+double basic_json<Char, Alloc>::as_double() const
+{
+    switch (type_)
+    {
+    case value_type::double_t:
+        return value_.float_value_;
+    case value_type::longlong_t:
+        return static_cast<double>(value_.si_value_);
+    case value_type::ulonglong_t:
+        return static_cast<double>(value_.ui_value_);
+    case value_type::null_t:
+        return std::numeric_limits<double>::quiet_NaN();
+    default:
+        JSONCONS_THROW_EXCEPTION("Not a double");
+    }
+}
+
+template<typename Char, typename Alloc>
+int basic_json<Char, Alloc>::as_int() const
+{
+    switch (type_)
+    {
+    case value_type::double_t:
+        return static_cast<int>(value_.float_value_);
+    case value_type::longlong_t:
+        return static_cast<int>(value_.si_value_);
+    case value_type::ulonglong_t:
+        return static_cast<int>(value_.ui_value_);
+    case value_type::bool_t:
+        return value_.bool_value_ ? 1 : 0;
+    default:
+        JSONCONS_THROW_EXCEPTION("Not a int");
+    }
+}
+
+template<typename Char, typename Alloc>
+unsigned int basic_json<Char, Alloc>::as_uint() const
+{
+    switch (type_)
+    {
+    case value_type::double_t:
+        return static_cast<unsigned int>(value_.float_value_);
+    case value_type::longlong_t:
+        return static_cast<unsigned int>(value_.si_value_);
+    case value_type::ulonglong_t:
+        return static_cast<unsigned int>(value_.ui_value_);
+    case value_type::bool_t:
+        return value_.bool_value_ ? 1 : 0;
+    default:
+        JSONCONS_THROW_EXCEPTION("Not a unsigned int");
+    }
+}
+
+template<typename Char, typename Alloc>
 long basic_json<Char, Alloc>::as_long() const
 {
     switch (type_)
     {
-    case value_type::float_t:
+    case value_type::double_t:
         return static_cast<long>(value_.float_value_);
-    case value_type::integer_t:
+    case value_type::longlong_t:
         return static_cast<long>(value_.si_value_);
-    case value_type::unsigned_t:
+    case value_type::ulonglong_t:
         return static_cast<long>(value_.ui_value_);
     case value_type::bool_t:
         return value_.bool_value_ ? 1 : 0;
@@ -1540,11 +1486,11 @@ unsigned long basic_json<Char, Alloc>::as_ulong() const
 {
     switch (type_)
     {
-    case value_type::float_t:
+    case value_type::double_t:
         return static_cast<unsigned long>(value_.float_value_);
-    case value_type::integer_t:
+    case value_type::longlong_t:
         return static_cast<unsigned long>(value_.si_value_);
-    case value_type::unsigned_t:
+    case value_type::ulonglong_t:
         return static_cast<unsigned long>(value_.ui_value_);
     case value_type::bool_t:
         return value_.bool_value_ ? 1 : 0;
@@ -1644,11 +1590,11 @@ Char basic_json<Char, Alloc>::as_char() const
     {
     case value_type::string_t:
         return value_.string_value_->length > 0 ? value_.string_value_->p[0] : '\0';
-    case value_type::integer_t:
+    case value_type::longlong_t:
         return static_cast<Char>(value_.si_value_);
-    case value_type::unsigned_t:
+    case value_type::ulonglong_t:
         return static_cast<Char>(value_.ui_value_);
-    case value_type::float_t:
+    case value_type::double_t:
         return static_cast<Char>(value_.float_value_);
     case value_type::bool_t:
         return value_.bool_value_ ? 1 : 0;
